@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -97,32 +98,66 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
 
       //image besar atas
-      Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          const Image(image: AssetImage('assets/images/greencurry.jpg')),
-          Container(
-            alignment: Alignment.bottomLeft,
-            padding: const EdgeInsets.all(20),
-            child: RichText(
-                text: const TextSpan(
-                    style: TextStyle(color: Colors.black),
-                    children: [
-                  TextSpan(
-                      text: "Thai style\n",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold)),
-                  TextSpan(
-                      text: "10 places",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                      )),
-                ])),
-          )
-        ],
+      SizedBox(
+        height: 275,
+        child: PageView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: 5,
+          itemBuilder: (context, count) {
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                const Image(image: AssetImage('assets/images/greencurry.jpg')),
+                Container(
+                    alignment: Alignment.bottomLeft,
+                    padding: const EdgeInsets.all(20),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.bottomLeft,
+                            child: RichText(
+                                text: const TextSpan(
+                                    style: TextStyle(color: Colors.black),
+                                    children: [
+                                  TextSpan(
+                                      text: "Thai style\n",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(
+                                      text: "10 places",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                      )),
+                                ])),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            alignment: Alignment.bottomRight,
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(Icons.circle, size: 15,),
+                                Icon(Icons.radio_button_unchecked, size: 15,),
+                                Icon(Icons.radio_button_unchecked, size: 15,),
+                                Icon(Icons.radio_button_unchecked, size: 15,)
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                Container(
+                  alignment: Alignment.bottomCenter,
+                )
+              ],
+            );
+          },
+        ),
       ),
 
       //most popular
@@ -135,8 +170,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MorePage(choice: 0)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MorePage(choice: 0)));
               },
               child: const Text("See all",
                   style: TextStyle(fontSize: 20, color: Colors.blue)),
@@ -157,8 +194,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 175,
                   alignment: Alignment.bottomLeft,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white,),
+                    shape: BoxShape.rectangle,
+                    color: Colors.white,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -218,8 +256,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MorePage(choice: 1)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MorePage(choice: 1)));
               },
               child: const Text("See all",
                   style: TextStyle(fontSize: 20, color: Colors.blue)),
@@ -240,8 +280,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 175,
                   alignment: Alignment.bottomLeft,
                   decoration: const BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white,),
+                    shape: BoxShape.rectangle,
+                    color: Colors.white,
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -312,7 +353,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       //body
       body: _pages[_selectedIndex],
-      
+
       //bottom bar
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
